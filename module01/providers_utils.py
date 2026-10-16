@@ -86,6 +86,6 @@ CLASSIFIER_SYSTEM = (
 
 def classify_ticket(client: OpenAI, model: str, ticket_text: str, *, temperature: float = 0.0) -> dict:
     """Same shape as ask(), specialised for the sweep: one word in, one label out."""
-    result = ask(client, model, CLASSIFIER_SYSTEM, ticket_text, temperature=temperature, max_tokens=10)
+    result = ask(client, model, CLASSIFIER_SYSTEM, ticket_text, temperature=temperature, max_tokens=100)
     label = result["text"].strip().lower().strip(".")
     return {**result, "label": label, "valid": label in {"billing", "technical", "general"}}
